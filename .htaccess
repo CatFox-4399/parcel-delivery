@@ -1,0 +1,23 @@
+# ParcelTrack Pro — Root .htaccess
+# Protects sensitive config files and enables clean URLs
+
+# Deny direct access to config files
+<Files "db.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+# Deny access to the setup script from non-local IPs
+# (handled in PHP itself, this is a backup layer)
+<Files "setup.php">
+    Order deny,allow
+    Deny from all
+    Allow from 127.0.0.1
+    Allow from ::1
+</Files>
+
+# Prevent directory listing
+Options -Indexes
+
+# Default character set
+AddDefaultCharset UTF-8

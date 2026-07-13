@@ -1,0 +1,582 @@
+/* =============================================================
+   ParcelTrack Pro — Rider-Specific Styles
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   Online / Offline Toggle
+   ------------------------------------------------------------- */
+.online-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: var(--space-2) var(--space-4);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+}
+
+.online-toggle.is-online {
+    background: var(--color-success-bg);
+    border-color: var(--color-success);
+    color: #15803d;
+}
+
+.online-toggle.is-offline {
+    background: #f1f5f9;
+    border-color: var(--color-border-dark);
+    color: var(--color-text-muted);
+}
+
+.toggle-switch {
+    width: 40px;
+    height: 22px;
+    background: var(--color-border-dark);
+    border-radius: var(--radius-full);
+    position: relative;
+    transition: background var(--transition-base);
+    flex-shrink: 0;
+}
+
+.toggle-switch.active { background: var(--color-success); }
+
+.toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base);
+}
+
+.toggle-switch.active .toggle-knob { transform: translateX(18px); }
+
+/* GPS Status Pill */
+.gps-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.gps-status.acquiring { color: var(--color-warning); border-color: var(--color-warning); }
+.gps-status.active    { color: var(--color-success); border-color: var(--color-success); }
+.gps-status.error     { color: var(--color-danger);  border-color: var(--color-danger);  }
+.gps-status.offline   { color: var(--color-text-muted); }
+
+.gps-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.gps-status.active .gps-pulse {
+    animation: pulse-online 2s infinite;
+}
+
+/* -------------------------------------------------------------
+   Rider Dashboard Hero
+   ------------------------------------------------------------- */
+.rider-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #243045 100%);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    color: #fff;
+    margin-bottom: var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.rider-hero::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(249,115,22,0.08);
+}
+
+.rider-hero::before {
+    content: '';
+    position: absolute;
+    right: 60px;
+    bottom: -60px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(249,115,22,0.05);
+}
+
+.hero-greeting h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: var(--space-1);
+}
+
+.hero-greeting p {
+    font-size: var(--font-size-sm);
+    color: rgba(255,255,255,0.65);
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-3);
+    position: relative;
+    z-index: 1;
+}
+
+.hero-stats {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.hero-stat-value {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: #fff;
+}
+
+.hero-stat-label {
+    font-size: var(--font-size-xs);
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* -------------------------------------------------------------
+   Parcel Cards (Rider View)
+   ------------------------------------------------------------- */
+.parcel-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-5);
+}
+
+.parcel-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+}
+
+.parcel-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.parcel-card-header {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+}
+
+.parcel-tracking {
+    font-family: 'Courier New', monospace;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.parcel-card-body {
+    padding: var(--space-5);
+    flex: 1;
+}
+
+.parcel-recipient {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-1);
+}
+
+.parcel-address {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    line-height: 1.5;
+}
+
+.parcel-address svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.parcel-meta {
+    display: flex;
+    gap: var(--space-4);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.parcel-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.parcel-meta-item svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+}
+
+.parcel-card-footer {
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    gap: var(--space-3);
+}
+
+/* -------------------------------------------------------------
+   Update Parcel Form (rider/parcel_update.php)
+   ------------------------------------------------------------- */
+.update-form-card {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.status-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+}
+
+.status-option {
+    position: relative;
+}
+
+.status-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.status-option-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+}
+
+.status-option-label svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--color-text-muted);
+    transition: stroke var(--transition-fast);
+}
+
+.status-option input[type="radio"]:checked + .status-option-label {
+    border-color: var(--status-color, var(--color-accent));
+    background: var(--status-bg, var(--color-accent-light));
+    color: var(--status-text, var(--color-accent));
+    box-shadow: 0 0 0 3px var(--status-ring, rgba(249,115,22,0.12));
+}
+
+.status-option input[type="radio"]:checked + .status-option-label svg {
+    stroke: var(--status-color, var(--color-accent));
+}
+
+/* Per-status colours */
+.status-option.pending      { --status-color: var(--color-warning); --status-bg: var(--color-warning-bg); --status-text: #92400e; --status-ring: rgba(234,179,8,0.15); }
+.status-option.out_delivery { --status-color: var(--color-info);    --status-bg: var(--color-info-bg);    --status-text: #1d4ed8; --status-ring: rgba(59,130,246,0.15); }
+.status-option.delivered    { --status-color: var(--color-success);  --status-bg: var(--color-success-bg); --status-text: #15803d; --status-ring: rgba(34,197,94,0.15); }
+.status-option.failed       { --status-color: var(--color-danger);   --status-bg: var(--color-danger-bg);  --status-text: #991b1b; --status-ring: rgba(239,68,68,0.15); }
+
+/* -------------------------------------------------------------
+   Camera / Photo Upload
+   ------------------------------------------------------------- */
+.camera-section {
+    border: 2px dashed var(--color-border-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    text-align: center;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+    background: var(--color-bg);
+    cursor: pointer;
+    position: relative;
+}
+
+.camera-section:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-light);
+}
+
+.camera-section input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.camera-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-4);
+}
+
+.camera-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--color-accent);
+}
+
+.camera-section h4 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+}
+
+.camera-section p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+/* Photo preview */
+.photo-preview {
+    position: relative;
+    margin-top: var(--space-4);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    display: none;
+}
+
+.photo-preview img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-preview-actions {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    display: flex;
+    gap: var(--space-2);
+}
+
+.photo-preview-badge {
+    position: absolute;
+    bottom: var(--space-3);
+    left: var(--space-3);
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    font-size: var(--font-size-xs);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+}
+
+/* Upload progress */
+.upload-progress {
+    margin-top: var(--space-4);
+    display: none;
+}
+
+.progress-bar-wrap {
+    height: 6px;
+    background: var(--color-bg);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-accent), #fb923c);
+    border-radius: var(--radius-full);
+    width: 0;
+    transition: width var(--transition-base);
+}
+
+.progress-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+    text-align: right;
+}
+
+/* -------------------------------------------------------------
+   Rider Profile Page
+   ------------------------------------------------------------- */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-8);
+    background: linear-gradient(135deg, var(--color-primary), #243045);
+    border-radius: var(--radius-xl);
+    color: #fff;
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.profile-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--color-accent), #fb923c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    border: 3px solid rgba(255,255,255,0.2);
+}
+
+.profile-name {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: var(--space-1);
+}
+
+.profile-role {
+    font-size: var(--font-size-sm);
+    color: rgba(255,255,255,0.65);
+    text-transform: capitalize;
+    margin-bottom: var(--space-3);
+}
+
+.profile-badges {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.profile-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.1);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+}
+
+.profile-badge svg { width: 12px; height: 12px; stroke: currentColor; }
+
+/* History Page */
+.history-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-fast);
+}
+
+.history-item:last-child { border-bottom: none; }
+.history-item:hover { background: #f8fafc; }
+
+.history-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.history-icon.delivered { background: var(--color-success-bg); }
+.history-icon.delivered svg { stroke: var(--color-success); }
+.history-icon.failed    { background: var(--color-danger-bg); }
+.history-icon.failed svg   { stroke: var(--color-danger); }
+
+.history-icon svg { width: 18px; height: 18px; }
+
+.history-info { flex: 1; min-width: 0; }
+
+.history-tracking {
+    font-family: 'Courier New', monospace;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-text-muted);
+}
+
+.history-recipient {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history-time {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
