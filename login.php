@@ -261,7 +261,7 @@ $csrfToken = csrf_token();
         </div>
         <?php endif; ?>
 
-        <form method="POST" action="/parcel_delivery_system/login.php" id="loginForm" novalidate>
+        <form method="POST" action="<?= BASE_URL ?>/login.php" id="loginForm" novalidate>
             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
             <div class="form-group">
